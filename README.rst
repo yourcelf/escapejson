@@ -20,10 +20,21 @@ untrusted JSON input or from a broken encoder.  This library does not validate
 the correctness of the JSON it is fed.  Always use a conformant JSON encoder
 (e.g. ``json.dumps``) to ensure that the JSON is valid to start with.
 
+Installation
+============
+
+::
+
+    pip install escapejson
+
+Supports python 2.7 and 3.3+.  Supports Django 1.7, 1.8, 1.9, 1.10. (Django not required).
+
 Usage
 =====
 
-Example API usage (with or without Django)::
+Example API usage (with or without Django)
+-----------------------------------------
+::
 
     import json
     from escapejson import escapejson
@@ -32,14 +43,30 @@ Example API usage (with or without Django)::
     my_str = json.dumps(myobj)
     my_safe_str = escapejson(my_str)
 
-Example Django templates usage::
+Example Django templates usage
+------------------------------
 
-    {# First, add "escapejson" to INSTALLED_APPS #}
+First, add ``"escapejson"`` to ``INSTALLED_APPS`` in your project's ``settings.py``.::
+
+    # settings.py
+    INSTALLED_APPS = [
+        ...,
+        "escapejson",
+        ...,
+    ]
+        
+
+Then, use the ``escapejson`` library and filter::
+
     {% load escapejson %}
 
     <script>
         var my_obj = {{obj_or_str|escapejson}};
     </script>
+
+This filter will attempt to JSON-encode any non-string object that is passed to it before
+escaping, or just escape any string that is passed to it.
+
 
 What it protects against
 ========================
