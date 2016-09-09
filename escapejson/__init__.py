@@ -1,1 +1,1 @@
-from escapejson import replacements, escapejson
+from .escapejson import replacements, escapejson

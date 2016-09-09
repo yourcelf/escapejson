@@ -1,7 +1,7 @@
 import json
 
 from django import template
-from django.json import DjangoJSONEncoder
+from django.core.serializers.json import DjangoJSONEncoder
 from django.utils import six
 from django.utils.safestring import mark_safe
 from ..escapejson import escapejson
