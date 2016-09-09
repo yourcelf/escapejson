@@ -2,13 +2,12 @@
 escapejson function and django template filter
 ==============================================
 
-`JSON is not javascript <http://timelessrepo.com/json-isnt-a-javascript-subset/>`_.
-Many developers erroneously think that they can just place the output of
-``json.dumps(obj)`` inside ``<script>`` tags and be good to go -- but this is
-dangerously vulnerable to cross-site scripting attacks from 2 important edge
-cases for how JSON differs from javscript: (1) the handling of a literal
-``</script>`` within script blocks, and (2) the behavior of two pesky unicode
-whitespace characters.
+**JSON is not javascript.** Many developers erroneously think that they can
+just place the output of ``json.dumps(obj)`` inside ``<script>`` tags and be
+good to go -- but this is dangerously vulnerable to cross-site scripting
+attacks from 2 important edge cases for how JSON differs from javscript: (1)
+the handling of a literal ``</script>`` within script blocks, and (2) the
+behavior of two pesky unicode whitespace characters.
 
 This very simple library provides a function ``escapejson``, and a Django
 template filter of the same name.  The output of ``escapejson`` should be safe
@@ -16,9 +15,10 @@ for inclusion in HTML ``<script>`` tags, and interpretation directly as
 javascript.
 
 NOTE: this escaping is only "safe" if the input is a syntactically valid JSON
-string.  The output is NOT safe if you pass it untrusted input or if your JSON
-formatter produces invalid syntax.  This library does not validate the
-correctness of the JSON it is fed.
+string.  The output is NOT safe if you pass it invalid JSON, whether from
+untrusted JSON input or from a broken encoder.  This library does not validate
+the correctness of the JSON it is fed.  Always use a conformant JSON encoder
+(e.g. ``json.dumps``) to ensure that the JSON is valid to start with.
 
 Usage
 =====
