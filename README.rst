@@ -27,7 +27,14 @@ Installation
 
     pip install escapejson
 
-Supports python 2.7 and 3.3+.  Supports Django 1.7, 1.8, 1.9, 1.10. (Django not required).
+
+Compatibility:
+
+- v0.x: supports python 2.7 and 3.3, and Django < 3.0.
+- v1.x: supports python 3.6+, and Django 1.11+.
+
+Django is not required for use.
+
 
 Usage
 =====
